@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,5 @@
 */
 
 Route::get('/', function () {
-    return redirect('/horses');
+    return view('welcome');
 });
-
-ROute::get('/horses', 'PostHorseController@index')->name('umastagram.top');
