@@ -15,4 +15,6 @@ Route::get('/', function () {
     return redirect('/horses');
 });
 
-ROute::get('/horses', 'PostHorseController@index')->name('umastagram.top');
+Route::get('/horses', 'PostHorseController@index')->name('umastagram.top');
+Route::get('/horse/{id}', 'PostHorseController@show')->name('umastagram.show');
+
