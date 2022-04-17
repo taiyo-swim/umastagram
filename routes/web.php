@@ -22,3 +22,6 @@ Route::get('/horse/create', 'PostHorseController@create')->name('umastagram.crea
 Route::get('/horse/{id}', 'PostHorseController@show')->name('umastagram.show');
 Route::post('/horse', 'PostHorseController@store')->name('umastagram.store');
 
+Route::get('/horse/edit/{id}', 'PostHorseController@edit')->name('umastagram.edit');
+Route::put('/horse/update/{id}', 'PostHorseController@update')->name('umastagram.update');
+

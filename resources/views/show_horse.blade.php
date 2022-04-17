@@ -11,5 +11,6 @@
         <h3>生年月日：{{ $horse->birthday }}</h3>
         <h3>主な勝ち鞍：{{ $horse->winning }}</h3>
     </div>
+    <a href='{{ route("umastagram.edit", ['id' => $horse->id]) }}'>編集</a>
     <a href='{{ route("umastagram.top") }}'>トップページへ</a>
 @endsection
