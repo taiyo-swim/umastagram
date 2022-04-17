@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/horses', 'PostHorseController@index')->name('umastagram.top');
+
+//馬の詳細情報の投稿・編集・削除（管理者のみ）
+Route::get('/horse/create', 'PostHorseController@create')->name('umastagram.create');
 Route::get('/horse/{id}', 'PostHorseController@show')->name('umastagram.show');
+Route::post('/horse', 'PostHorseController@store')->name('umastagram.store');
 
