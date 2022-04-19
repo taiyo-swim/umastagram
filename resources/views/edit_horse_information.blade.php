@@ -10,6 +10,9 @@
                     <label>
                         <input type="text" name="horse_information[name]" value="{{ $horse->name }}"/>
                     </label>
+                    @error('horse_information.name')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="color_form">
@@ -26,6 +29,9 @@
                         <option value="栃栗毛">
                         <option value="白毛">
                     </datalist>
+                    @error('horse_information.color')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="father_name_form">
@@ -33,6 +39,9 @@
                     <label>
                         <input type="text" name="horse_information[father_name]" value="{{ $horse->father_name }}"/>
                     </label>
+                    @error('horse_information.father_name')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="mother_name_form">
@@ -40,6 +49,9 @@
                     <label>
                         <input type="text" name="horse_information[mother_name]" value="{{ $horse->mother_name }}"/>
                     </label>
+                    @error('horse_information.mother_name')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="mothers_father_name_form">
@@ -47,6 +59,9 @@
                     <label>
                         <input type="text" name="horse_information[mothers_father_name]" value="{{ $horse->mothers_father_name }}"/>
                     </label>
+                    @error('horse_information.mothers_father_name')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="owner_form">
@@ -54,6 +69,9 @@
                     <label>
                         <input type="text" name="horse_information[owner]" value="{{ $horse->owner }}"/>
                     </label>
+                    @error('horse_information.owner')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                     
                 <div class="trainer_form">
@@ -61,6 +79,9 @@
                     <label>
                         <input type="text" name="horse_information[trainer]" value="{{ $horse->trainer }}"/>
                     </label>
+                    @error('horse_information.trainer')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="producer_form">
@@ -68,6 +89,9 @@
                     <label>
                         <input type="text" name="horse_information[producer]" value="{{ $horse->producer }}"/>
                     </label>
+                    @error('horse_information.producer')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="birthday_form">
@@ -75,6 +99,9 @@
                     <label>
                         <input type="text" name="horse_information[birthday]" value="{{ $horse->birthday }}"/>
                     </label>
+                    @error('horse_information.birthday')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="winning_form">
@@ -82,6 +109,9 @@
                     <label>
                         <input type="text" name="horse_information[winning]" value="{{ $horse->winning }}"/>
                     </label>
+                    @error('horse_information.winning')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="form-submit">

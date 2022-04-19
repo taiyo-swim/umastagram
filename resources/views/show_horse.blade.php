@@ -11,6 +11,12 @@
         <h3>生年月日：{{ $horse->birthday }}</h3>
         <h3>主な勝ち鞍：{{ $horse->winning }}</h3>
     </div>
+    
     <a href='{{ route("umastagram.edit", ['id' => $horse->id]) }}'>編集</a>
+    <form action="/horse/{{ $horse->id }}" id="horse_information_delete" method="post">
+        @csrf
+        @method('DELETE')
+        <h5><button onclick="return confirm('本当に削除しますか？')" action="submit">削除</button></h5>
+    </form>
     <a href='{{ route("umastagram.top") }}'>トップページへ</a>
 @endsection

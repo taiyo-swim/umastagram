@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Horse;
+use App\Http\Requests\PostHorseRequest;
 use Illuminate\Http\Request;
 
 class PostHorseController extends Controller
@@ -13,7 +14,7 @@ class PostHorseController extends Controller
     }
     
     //馬の詳細ページの表示
-    public function show(Request $request, $id, Horse $horse)
+    public function show(PostHorseRequest $request, $id, Horse $horse)
     {
         $horse = Horse::find($id);
         return view('show_horse', ['horse' => $horse]);
@@ -28,7 +29,7 @@ class PostHorseController extends Controller
     
     //馬の情報の投稿
     //管理者のみ可能
-    public function store(Request $request, Horse $horse)
+    public function store(PostHorseRequest $request, Horse $horse)
     {
         $input = $request['horse_information'];
         $horse->name = $input['name'];
@@ -49,7 +50,7 @@ class PostHorseController extends Controller
     
     //馬の情報の編集ページの表示
     //管理者のみ表示
-    public function edit(Request $request, $id, Horse $horse)
+    public function edit(PostHorseRequest $request, $id, Horse $horse)
     {
         $horse = Horse::find($id);
         
@@ -58,7 +59,7 @@ class PostHorseController extends Controller
     
     //馬の情報の編集
     //管理者のみ可能
-    public function update(Request $request, $id, Horse $horse)
+    public function update(PostHorseRequest $request, $id, Horse $horse)
     {
         $horse = Horse::find($id); //元のデータを更新させるため、idでデータを取ってくる
         
@@ -77,5 +78,13 @@ class PostHorseController extends Controller
         $horse->save();
         
         return redirect('/horse/' . $horse->id);
+    }
+    
+    public function destory($id)
+    {
+        $horse = Horse::find($id);
+        $horse->delete();
+        
+        return redirect('/');
     }
 }
