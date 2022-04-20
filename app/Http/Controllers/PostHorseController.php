@@ -13,8 +13,22 @@ class PostHorseController extends Controller
         return view('index');
     }
     
+    public function search(Request $request)
+    {
+        $query = Horse::query();  //クエリを生成
+        
+        $keyword = $request->input('horse_name_keyword');
+        
+        $query->where('name','like','%'.$keyword.'%');
+        $horses = $query->orderBy('name','desc')->get();
+        $count = $query->count();
+        
+        return view('search_horses', ['horses' => $horses, 'count' => $count, 'keyword' => $keyword]);
+        
+    }
+    
     //馬の詳細ページの表示
-    public function show(PostHorseRequest $request, $id, Horse $horse)
+    public function show($id)
     {
         $horse = Horse::find($id);
         return view('show_horse', ['horse' => $horse]);
@@ -50,7 +64,7 @@ class PostHorseController extends Controller
     
     //馬の情報の編集ページの表示
     //管理者のみ表示
-    public function edit(PostHorseRequest $request, $id, Horse $horse)
+    public function edit($id, Horse $horse)
     {
         $horse = Horse::find($id);
         

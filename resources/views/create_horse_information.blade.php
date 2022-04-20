@@ -17,7 +17,7 @@
                 
                 <div class="color_form">
                     <h4><label for="horse-color-choice">馬体の色</label></h4>
-                    <input list="horse-colors" id="horse-color-choice" name="horse_information[color]"/>
+                    <input list="horse-colors" id="horse-color-choice" name="horse_information[color]" value="{{ old('horse_information.color') }}"/>
                     
                     <datalist id="horse-colors">
                         <option value="鹿毛">

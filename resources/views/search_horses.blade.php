@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-    <h1>umastagramへようこそ！</h1>
     <div class="horse_search">
         <!--↓↓ 検索フォーム ↓↓-->
             <form  class="search_form" method="get" action="/horses/search">
@@ -11,5 +10,17 @@
             </form>
         <!--↑↑ 検索フォーム ↑↑-->
     </div>
-    <h3><a href='{{ route("umastagram.create") }}'>競走馬情報の登録</a></h3>
+    
+    <div class="search-count">
+        @if ($keyword != null)
+            <h5>{{ $keyword }}の検索結果：{{ $count }}頭</h5>
+        @endif
+    </div>
+    
+    <div class="search_horse_list">
+        @foreach($horses as $horse)
+            <h2><a href="{{ route("umastagram.show", ['id' => $horse->id]) }}">{{ $horse->name }}</a></h2>
+        @endforeach
+    </div>
+    <a href='{{ route("umastagram.top") }}'>トップページへ</a>
 @endsection

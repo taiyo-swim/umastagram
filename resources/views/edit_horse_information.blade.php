@@ -8,7 +8,7 @@
                 <div class="name_form">
                     <h4>馬名</h4>
                     <label>
-                        <input type="text" name="horse_information[name]" value="{{ $horse->name }}"/>
+                        <input type="text" name="horse_information[name]" value="{{ old('horse_information.name', $horse->name) }}"/>
                     </label>
                     @error('horse_information.name')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -17,7 +17,7 @@
                 
                 <div class="color_form">
                     <h4><label for="horse-color-choice">馬体の色</label></h4>
-                    <input list="horse-colors" id="horse-color-choice" name="horse_information[color]" value="{{ $horse->color }}"/>
+                    <input list="horse-colors" id="horse-color-choice" name="horse_information[color]" value="{{ old('horse_information.color', $horse->color) }}"/>
                     
                     <datalist id="horse-colors">
                         <option value="鹿毛">
@@ -37,7 +37,7 @@
                 <div class="father_name_form">
                     <h4>父</h4>
                     <label>
-                        <input type="text" name="horse_information[father_name]" value="{{ $horse->father_name }}"/>
+                        <input type="text" name="horse_information[father_name]" value="{{ old('horse_information.father_name', $horse->father_name) }}"/>
                     </label>
                     @error('horse_information.father_name')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -47,7 +47,7 @@
                 <div class="mother_name_form">
                     <h4>母</h4>
                     <label>
-                        <input type="text" name="horse_information[mother_name]" value="{{ $horse->mother_name }}"/>
+                        <input type="text" name="horse_information[mother_name]" value="{{ old('horse_information.mother_name', $horse->mother_name) }}"/>
                     </label>
                     @error('horse_information.mother_name')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -57,7 +57,7 @@
                 <div class="mothers_father_name_form">
                     <h4>母父</h4>
                     <label>
-                        <input type="text" name="horse_information[mothers_father_name]" value="{{ $horse->mothers_father_name }}"/>
+                        <input type="text" name="horse_information[mothers_father_name]" value="{{ old('horse_information.mothers_father_name', $horse->mothers_father_name) }}"/>
                     </label>
                     @error('horse_information.mothers_father_name')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -67,7 +67,7 @@
                 <div class="owner_form">
                     <h4>馬主</h4>
                     <label>
-                        <input type="text" name="horse_information[owner]" value="{{ $horse->owner }}"/>
+                        <input type="text" name="horse_information[owner]" value="{{ old('horse_information.owner', $horse->owner) }}"/>
                     </label>
                     @error('horse_information.owner')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -77,7 +77,7 @@
                 <div class="trainer_form">
                     <h4>調教師</h4>
                     <label>
-                        <input type="text" name="horse_information[trainer]" value="{{ $horse->trainer }}"/>
+                        <input type="text" name="horse_information[trainer]" value="{{ old('horse_information.trainer', $horse->trainer) }}"/>
                     </label>
                     @error('horse_information.trainer')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -87,7 +87,7 @@
                 <div class="producer_form">
                     <h4>生産者</h4>
                     <label>
-                        <input type="text" name="horse_information[producer]" value="{{ $horse->producer }}"/>
+                        <input type="text" name="horse_information[producer]" value="{{ old('horse_information.producer', $horse->producer) }}"/>
                     </label>
                     @error('horse_information.producer')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -97,7 +97,7 @@
                 <div class="birthday_form">
                     <h4>生年月日</h4>
                     <label>
-                        <input type="text" name="horse_information[birthday]" value="{{ $horse->birthday }}"/>
+                        <input type="text" name="horse_information[birthday]" value="{{ old('horse_information.birthday', $horse->birthday) }}"/>
                     </label>
                     @error('horse_information.birthday')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
@@ -107,7 +107,7 @@
                 <div class="winning_form">
                     <h4>主な勝ち鞍</h4>
                     <label>
-                        <input type="text" name="horse_information[winning]" value="{{ $horse->winning }}"/>
+                        <input type="text" name="horse_information[winning]" value="{{ old('horse_information.winning', $horse->winning) }}"/>
                     </label>
                     @error('horse_information.winning')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
