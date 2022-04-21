@@ -51,6 +51,8 @@
     <div class="search_horse_list">
         @foreach($horses as $horse)
             <h2><a href="{{ route("umastagram.show", ['id' => $horse->id]) }}">{{ $horse->name }}</a></h2>
+            <h3>父：{{ $horse->father_name }}</h3>
+            <h3>母：{{ $horse->mother_name }}</h3>
         @endforeach
     </div>
     <a href='{{ route("umastagram.top") }}'>トップページへ</a>
