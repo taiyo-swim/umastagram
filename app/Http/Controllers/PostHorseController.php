@@ -17,13 +17,32 @@ class PostHorseController extends Controller
     {
         $query = Horse::query();  //クエリを生成
         
-        $keyword = $request->input('horse_name_keyword');
+        if($request->input('horse_name_keyword') != null)
+        {
+            $keyword = $request->input('horse_name_keyword');
+            $query->where('name','like','%'.$keyword.'%');
+            $keyword_item = "馬名";
+        }elseif($request->input('owner_keyword') != null)
+        {
+            $keyword = $request->input('owner_keyword');
+            $query->where('owner','like','%'.$keyword.'%');
+            $keyword_item = "馬主";
+        }elseif($request->input('trainer_keyword') != null)
+        {
+            $keyword = $request->input('trainer_keyword');
+            $query->where('trainer','like','%'.$keyword.'%');
+            $keyword_item = "調教師";
+        }elseif($request->input('producer_keyword') != null)
+        {
+            $keyword = $request->input('producer_keyword');
+            $query->where('producer','like','%'.$keyword.'%');
+            $keyword_item = "生産者";
+        }
         
-        $query->where('name','like','%'.$keyword.'%');
         $horses = $query->orderBy('name','desc')->get();
         $count = $query->count();
         
-        return view('search_horses', ['horses' => $horses, 'count' => $count, 'keyword' => $keyword]);
+        return view('search_horses', ['horses' => $horses, 'count' => $count, 'keyword' => $keyword, 'keyword_item' => $keyword_item]);
         
     }
     
