@@ -26,3 +26,7 @@ Route::delete('/horse/{id}', 'PostHorseController@destory')->name('umastagram.de
 Route::get('/horses', 'PostHorseController@index')->name('umastagram.top');
 Route::get('/horses/search', 'PostHorseController@search')->name('umastagram.search');
 Route::get('/horse/{id}', 'PostHorseController@show')->name('umastagram.show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
