@@ -23,9 +23,9 @@
     <div class="horse_pictures">
         @foreach($horse_pictures as $horse_picture)
             @if($horse_picture->image_path)
-                <img src="https://umastagram.s3.ap-northeast-1.amazonaws.com/{{ $horse_picture->image_path }}">
-                <p>{{ $horse_picture->comment }}</p>
-                <p>{{ $horse_picture->user->name }}</p>
+                <a href='{{ route("umastagram.show_picture", ['horse_id' => $horse->id, 'picture_id' => $horse_picture->id]) }}'>
+                    <img src="https://umastagram.s3.ap-northeast-1.amazonaws.com/{{ $horse_picture->image_path }}">
+                </a>
             @endif
         @endforeach
     </div>

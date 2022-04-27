@@ -32,4 +32,12 @@ class PostPictureController extends Controller
         
         return redirect('/horse/'. $picture->horse_id);
     }
+    
+    public function show_picture($horse_id, $picture_id)
+    {
+        $horse = Horse::find($horse_id);
+        $picture = Picture::find($picture_id);
+        
+        return view('show_picture', ['picture' => $picture, 'horse' => $horse]);
+    }
 }

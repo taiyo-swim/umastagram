@@ -52,11 +52,11 @@ class PostHorseController extends Controller
     }
     
     //馬の詳細ページの表示
-    public function show($id)
+    public function show($horse_id)
     {
-        $horse = Horse::find($id);
+        $horse = Horse::find($horse_id);
         
-        $horse_pictures = Picture::where('horse_id', $id)->get();
+        $horse_pictures = Picture::where('horse_id', $horse_id)->get();
 
         return view('show_horse', ['horse' => $horse, 'horse_pictures' => $horse_pictures]);
     }
@@ -91,18 +91,18 @@ class PostHorseController extends Controller
     
     //馬の情報の編集ページの表示
     //管理者のみ表示
-    public function edit($id, Horse $horse)
+    public function edit($horse_id, Horse $horse)
     {
-        $horse = Horse::find($id);
+        $horse = Horse::find($horse_id);
         
         return view('edit_horse_information', ['horse' => $horse]);
     }
     
     //馬の情報の編集
     //管理者のみ可能
-    public function update(PostHorseRequest $request, $id, Horse $horse)
+    public function update(PostHorseRequest $request, $horse_id, Horse $horse)
     {
-        $horse = Horse::find($id); //元のデータを更新させるため、idでデータを取ってくる
+        $horse = Horse::find($horse_id); //元のデータを更新させるため、idでデータを取ってくる
         
         $edit = $request['horse_information'];
         $horse->name = $edit['name'];
@@ -121,9 +121,9 @@ class PostHorseController extends Controller
         return redirect('/horse/' . $horse->id);
     }
     
-    public function destory($id)
+    public function destory($horse_id)
     {
-        $horse = Horse::find($id);
+        $horse = Horse::find($horse_id);
         $horse->delete();
         
         return redirect('/');

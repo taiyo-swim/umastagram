@@ -29,6 +29,7 @@ Route::get('/horse/{horse_id}', 'PostHorseController@show')->name('umastagram.sh
 
 Route::get('horse/{horse_id}/create_picture', 'PostPictureController@create_picture')->name('umastagram.create_picture');
 Route::post('horse/{horse_id}', 'PostPictureController@upload_picture')->name('umastagram.upload_picture');
+Route::get('horse/{horse_id}/{picture_id}', 'PostPictureController@show_picture')->name('umastagram.show_picture');
 
 Auth::routes();
 
