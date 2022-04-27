@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Horse;
+use App\User;
+use App\Models\Picture;
 use App\Http\Requests\PostHorseRequest;
 use Illuminate\Http\Request;
+
+
+//ここに出てくる$idは全てhorsesテーブルのidカラムの値
 
 class PostHorseController extends Controller
 {
@@ -50,7 +55,10 @@ class PostHorseController extends Controller
     public function show($id)
     {
         $horse = Horse::find($id);
-        return view('show_horse', ['horse' => $horse]);
+        
+        $horse_pictures = Picture::where('horse_id', $id)->get();
+
+        return view('show_horse', ['horse' => $horse, 'horse_pictures' => $horse_pictures]);
     }
     
     //馬の情報の投稿ページの表示
