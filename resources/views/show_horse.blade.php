@@ -13,7 +13,7 @@
         <h3>主な勝ち鞍：{{ $horse->winning }}</h3>
     </div>
     
-    <a href='{{ route("umastagram.edit", ['horse_id' => $horse->id]) }}'>編集</a>
+    <a href='{{ route("umastagram.edit", ['horse' => $horse->id]) }}'>編集</a>
     <form action="/horse/{{ $horse->id }}" id="horse_information_delete" method="post">
         @csrf
         @method('DELETE')
@@ -23,13 +23,13 @@
     <div class="horse_pictures">
         @foreach($horse_pictures as $horse_picture)
             @if($horse_picture->image_path)
-                <a href='{{ route("umastagram.show_picture", ['horse_id' => $horse->id, 'picture_id' => $horse_picture->id]) }}'>
+                <a href='{{ route("umastagram.show_picture", ['horse' => $horse->id, 'picture' => $horse_picture->id]) }}'>
                     <img src="https://umastagram.s3.ap-northeast-1.amazonaws.com/{{ $horse_picture->image_path }}">
                 </a>
             @endif
         @endforeach
     </div>
-    <a href='{{ route("umastagram.create_picture", ['horse_id' => $horse->id]) }}'>写真の投稿</a>
+    <a href='{{ route("umastagram.create_picture", ['horse' => $horse->id]) }}'>写真の投稿</a>
     <a href='{{ route("umastagram.top") }}'>トップページへ</a>
     
 @endsection

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Horse;
 use App\User;
-use App\Models\Picture;
+use App\Picture;
 use App\Http\Requests\PostHorseRequest;
 use Illuminate\Http\Request;
 
+// DIを利用する（関数が実⾏される直前に、該当idのテーブルデータが設定されたインスタンスの⽣成をLaravel
+// の内部処理で⾃動的に⾏い、引数の変数に格納してくれる）
 
-//ここに出てくる$idは全てhorsesテーブルのidカラムの値
+// 1. ルーティング設定で、IDをURLから取得できるようにする。
+// 2. ルーティングで呼び出される関数の引数に該当のModelクラスを追加する。
+
 
 class PostHorseController extends Controller
 {
@@ -52,11 +56,9 @@ class PostHorseController extends Controller
     }
     
     //馬の詳細ページの表示
-    public function show($horse_id)
+    public function show(Horse $horse)
     {
-        $horse = Horse::find($horse_id);
-        
-        $horse_pictures = Picture::where('horse_id', $horse_id)->get();
+        $horse_pictures = Picture::where('horse_id', $horse->id)->get();
 
         return view('show_horse', ['horse' => $horse, 'horse_pictures' => $horse_pictures]);
     }
@@ -91,19 +93,15 @@ class PostHorseController extends Controller
     
     //馬の情報の編集ページの表示
     //管理者のみ表示
-    public function edit($horse_id, Horse $horse)
+    public function edit(Horse $horse)
     {
-        $horse = Horse::find($horse_id);
-        
         return view('edit_horse_information', ['horse' => $horse]);
     }
     
     //馬の情報の編集
     //管理者のみ可能
-    public function update(PostHorseRequest $request, $horse_id, Horse $horse)
+    public function update(PostHorseRequest $request, Horse $horse)
     {
-        $horse = Horse::find($horse_id); //元のデータを更新させるため、idでデータを取ってくる
-        
         $edit = $request['horse_information'];
         $horse->name = $edit['name'];
         $horse->color = $edit['color'];
@@ -121,9 +119,8 @@ class PostHorseController extends Controller
         return redirect('/horse/' . $horse->id);
     }
     
-    public function destory($horse_id)
+    public function destory(Horse $horse)
     {
-        $horse = Horse::find($horse_id);
         $horse->delete();
         
         return redirect('/');
