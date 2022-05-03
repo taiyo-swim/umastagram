@@ -56,4 +56,12 @@ class PostPictureController extends Controller
         
         return redirect('/horse/'. $picture->horse_id .'/'. $picture->id);
     }
+    
+    public function delete_picture(Horse $horse, Picture $picture)
+    {
+        $s3_delete = Storage::disk('s3')->delete($picture->image_path);
+        $picture->delete();
+        
+        return redirect('/horse/'. $horse->id);
+    }
 }

@@ -33,6 +33,7 @@ Route::post('horse/{horse}', 'PostPictureController@upload_picture')->name('umas
 Route::get('horse/{horse}/edit/{picture}', 'PostPictureController@edit_picture')->name('umastagram.edit_picture');
 Route::get('horse/{horse}/{picture}', 'PostPictureController@show_picture')->name('umastagram.show_picture');
 Route::put('horse/{horse}/update/{picture}', 'PostPictureController@update_picture')->name('umastagram.update_picture');
+Route::delete('/horse/{horse}/{picture}', 'PostPictureController@delete_picture')->name('umastagram.delete_picture');
 
 
 Auth::routes();
