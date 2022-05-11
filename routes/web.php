@@ -17,12 +17,12 @@ Route::get('/', function () {
 
 //{horse}はhorsesテーブルの該当レコードのid、{picture}はpicturesテーブルの該当レコードのid
 
-//馬の詳細情報の投稿・編集・削除（管理者のみ）
-Route::get('/horse/create', 'PostHorseController@create')->name('umastagram.create');
-Route::post('/horse', 'PostHorseController@store')->name('umastagram.store');
-Route::get('/horse/edit/{horse}', 'PostHorseController@edit')->name('umastagram.edit');
-Route::put('/horse/update/{horse}', 'PostHorseController@update')->name('umastagram.update');
-Route::delete('/horse/{horse}', 'PostHorseController@destory')->name('umastagram.destory');
+//馬の詳細情報の投稿・編集・削除（管理者権限）
+Route::get('/horse/create', 'PostHorseController@create')->name('umastagram.create')->middleware('can:admin');
+Route::post('/horse', 'PostHorseController@store')->name('umastagram.store')->middleware('can:admin');;
+Route::get('/horse/edit/{horse}', 'PostHorseController@edit')->name('umastagram.edit')->middleware('can:admin');;
+Route::put('/horse/update/{horse}', 'PostHorseController@update')->name('umastagram.update')->middleware('can:admin');;
+Route::delete('/horse/{horse}', 'PostHorseController@destory')->name('umastagram.destory')->middleware('can:admin');;
 
 Route::get('/horses', 'PostHorseController@index')->name('umastagram.top');
 Route::get('/horses/search', 'PostHorseController@search')->name('umastagram.search');

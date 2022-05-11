@@ -67,6 +67,7 @@ class PostHorseController extends Controller
     //管理者のみ表示
     public function create()
     {
+        $this->middleware('can:admin');
         return view('create_horse_information');
     }
     
@@ -74,6 +75,8 @@ class PostHorseController extends Controller
     //管理者のみ可能
     public function store(PostHorseRequest $request, Horse $horse)
     {
+        $this->middleware('can:admin');
+        
         $input = $request['horse_information'];
         $horse->name = $input['name'];
         $horse->color = $input['color'];
@@ -95,6 +98,7 @@ class PostHorseController extends Controller
     //管理者のみ表示
     public function edit(Horse $horse)
     {
+        $this->middleware('can:admin');
         return view('edit_horse_information', ['horse' => $horse]);
     }
     
@@ -102,6 +106,8 @@ class PostHorseController extends Controller
     //管理者のみ可能
     public function update(PostHorseRequest $request, Horse $horse)
     {
+        $this->middleware('can:admin');
+        
         $edit = $request['horse_information'];
         $horse->name = $edit['name'];
         $horse->color = $edit['color'];
@@ -121,6 +127,8 @@ class PostHorseController extends Controller
     
     public function destory(Horse $horse)
     {
+        $this->middleware('can:admin');
+        
         $horse->delete();
         
         return redirect('/');

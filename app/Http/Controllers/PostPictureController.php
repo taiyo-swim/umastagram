@@ -6,6 +6,7 @@ use App\Horse;
 use App\User;
 use App\Picture;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostPictureRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class PostPictureController extends Controller
         return view('upload_picture', ['horse' => $horse]);
     }
     
-    public function upload_picture(Request $request, Picture $picture, Horse $horse)
+    public function upload_picture(PostPictureRequest $request, Picture $picture, Horse $horse)
     {
         $horse_image = $request->file('horse_image');
         $image_path = Storage::disk('s3')->putFile('horse_image', $horse_image, 'public');  //putFile(PATH,$file)で指定したPATH（umastagramバケットの'horse_image'フォルダ）にファイルを保存※第三引数に'public'を入れないと外部からのアクセスができない
@@ -41,7 +42,7 @@ class PostPictureController extends Controller
         return view('edit_picture')->with(['picture' => $picture, 'horse' => $horse]);
     }
     
-    public function update_picture(Request $request, Horse $horse, Picture $picture)
+    public function update_picture(PostPictureRequest $request, Horse $horse, Picture $picture)
     {
         if ($request->file('horse_image')) {  //画像が変更されたら
         $s3_delete = Storage::disk('s3')->delete($picture->image_path);  //変更前の画像をs3から削除

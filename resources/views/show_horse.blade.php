@@ -13,12 +13,14 @@
         <h3>主な勝ち鞍：{{ $horse->winning }}</h3>
     </div>
     
-    <a href='{{ route("umastagram.edit", ['horse' => $horse->id]) }}'>編集</a>
-    <form action="/horse/{{ $horse->id }}" id="horse_information_delete" method="post">
-        @csrf
-        @method('DELETE')
-        <h5><button onclick="return confirm('本当に削除しますか？')" action="submit">削除</button></h5>
-    </form>
+    @can('admin') <!--管理者のみ表示-->
+        <a href='{{ route("umastagram.edit", ['horse' => $horse->id]) }}'>編集</a>
+        <form action="/horse/{{ $horse->id }}" id="horse_information_delete" method="post">
+            @csrf
+            @method('DELETE')
+            <h5><button onclick="return confirm('本当に削除しますか？')" action="submit">削除</button></h5>
+        </form>
+    @endcan
     
     <div class="horse_pictures">
         @foreach($horse_pictures as $horse_picture)
