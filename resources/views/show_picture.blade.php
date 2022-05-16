@@ -7,11 +7,15 @@
     <p>{{ $picture->user->name }}</p>
     <p>{{ $picture->created_at->format('Y年m月d日') }}</p>
     
-    <a href="{{ route("umastagram.edit_picture", ['horse' => $horse->id, 'picture' => $picture->id]) }}">編集</a>
+    @can('update_picture', $picture)  <!--投稿したユーザー以外には表示されない-->
+        <a href="{{ route("umastagram.edit_picture", ['horse' => $horse->id, 'picture' => $picture->id]) }}">編集</a>
+    @endcan
     
-    <form action="/horse/{{ $horse->id }}/{{ $picture->id }}" id="picture_delete" method="post">
-        @csrf
-        @method('DELETE')
-        <h5><button onclick="return confirm('本当に削除しますか？')" action="submit">写真を削除</button></h5>
-    </form>
+    @can('delete_picture', $picture)  <!--投稿したユーザー以外には表示されない-->
+        <form action="/horse/{{ $horse->id }}/{{ $picture->id }}" id="picture_delete" method="post">
+            @csrf
+            @method('DELETE')
+            <h5><button onclick="return confirm('本当に削除しますか？')" action="submit">写真を削除</button></h5>
+        </form>
+    @endcan
 @endsection

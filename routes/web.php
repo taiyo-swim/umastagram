@@ -18,22 +18,22 @@ Route::get('/', function () {
 //{horse}はhorsesテーブルの該当レコードのid、{picture}はpicturesテーブルの該当レコードのid
 
 //馬の詳細情報の投稿・編集・削除（管理者権限）
-Route::get('/horse/create', 'PostHorseController@create')->name('umastagram.create')->middleware('can:admin');
-Route::post('/horse', 'PostHorseController@store')->name('umastagram.store')->middleware('can:admin');;
-Route::get('/horse/edit/{horse}', 'PostHorseController@edit')->name('umastagram.edit')->middleware('can:admin');;
-Route::put('/horse/update/{horse}', 'PostHorseController@update')->name('umastagram.update')->middleware('can:admin');;
-Route::delete('/horse/{horse}', 'PostHorseController@destory')->name('umastagram.destory')->middleware('can:admin');;
+Route::get('/horse/create', 'PostHorseController@create')->name('umastagram.create')->middleware('can:admin'); //馬の情報登録画面表示（管理者）
+Route::post('/horse', 'PostHorseController@store')->name('umastagram.store')->middleware('can:admin'); //馬の情報登録（管理者）
+Route::get('/horse/edit/{horse}', 'PostHorseController@edit')->name('umastagram.edit')->middleware('can:admin'); //馬の情報編集画面表示（管理者）
+Route::put('/horse/update/{horse}', 'PostHorseController@update')->name('umastagram.update')->middleware('can:admin'); //馬の情報の更新（管理者）
+Route::delete('/horse/{horse}', 'PostHorseController@destory')->name('umastagram.destory')->middleware('can:admin'); //馬の情報削除（管理者）
 
-Route::get('/horses', 'PostHorseController@index')->name('umastagram.top');
-Route::get('/horses/search', 'PostHorseController@search')->name('umastagram.search');
-Route::get('/horse/{horse}', 'PostHorseController@show')->name('umastagram.show');
+Route::get('/horses', 'PostHorseController@index')->name('umastagram.top');  //トップページの表示
+Route::get('/horses/search', 'PostHorseController@search')->name('umastagram.search'); //キーワード検索
+Route::get('/horse/{horse}', 'PostHorseController@show')->name('umastagram.show'); //馬の詳細ページ表示
 
-Route::get('horse/{horse}/create_picture', 'PostPictureController@create_picture')->name('umastagram.create_picture');
-Route::post('horse/{horse}', 'PostPictureController@upload_picture')->name('umastagram.upload_picture');
-Route::get('horse/{horse}/edit/{picture}', 'PostPictureController@edit_picture')->name('umastagram.edit_picture');
-Route::get('horse/{horse}/{picture}', 'PostPictureController@show_picture')->name('umastagram.show_picture');
-Route::put('horse/{horse}/update/{picture}', 'PostPictureController@update_picture')->name('umastagram.update_picture');
-Route::delete('/horse/{horse}/{picture}', 'PostPictureController@delete_picture')->name('umastagram.delete_picture');
+Route::get('horse/{horse}/create_picture', 'PostPictureController@create_picture')->name('umastagram.create_picture')->middleware('auth'); //馬の写真投稿画面表示(ログインユーザー）
+Route::post('horse/{horse}', 'PostPictureController@upload_picture')->name('umastagram.upload_picture')->middleware('auth'); //馬の写真投稿(ログインユーザー）
+Route::get('horse/{horse}/edit/{picture}', 'PostPictureController@edit_picture')->name('umastagram.edit_picture')->middleware('auth'); //馬の写真編集画面表示(ログインユーザー）
+Route::get('horse/{horse}/{picture}', 'PostPictureController@show_picture')->name('umastagram.show_picture'); //馬の写真の詳細ページ表示
+Route::put('horse/{horse}/update/{picture}', 'PostPictureController@update_picture')->name('umastagram.update_picture')->middleware('auth'); //馬の写真の更新(ログインユーザー）
+Route::delete('/horse/{horse}/{picture}', 'PostPictureController@delete_picture')->name('umastagram.delete_picture')->middleware('auth'); //馬の写真削除(ログインユーザー）
 
 
 Auth::routes();

@@ -44,6 +44,8 @@ class PostPictureController extends Controller
     
     public function update_picture(PostPictureRequest $request, Horse $horse, Picture $picture)
     {
+        $this->authorize('update_picture', $picture);  //ポリシーを元に投稿したユーザー以外は編集できないようにアクションを認可
+        
         if ($request->file('horse_image')) {  //画像が変更されたら
         $s3_delete = Storage::disk('s3')->delete($picture->image_path);  //変更前の画像をs3から削除
         $horse_image = $request->file('horse_image');  //s3へ画像をアップロード
@@ -60,6 +62,8 @@ class PostPictureController extends Controller
     
     public function delete_picture(Horse $horse, Picture $picture)
     {
+        $this->authorize('delete_picture', $picture);  //ポリシーを元に投稿したユーザー以外は削除できないようにアクションを認可
+        
         $s3_delete = Storage::disk('s3')->delete($picture->image_path);
         $picture->delete();
         
