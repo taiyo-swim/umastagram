@@ -79,15 +79,19 @@ class PostHorseController extends Controller
         
         $input = $request['horse_information'];
         $horse->name = $input['name'];
+        $horse->sex = $input['sex'];
         $horse->color = $input['color'];
         $horse->father_name = $input['father_name'];
         $horse->mother_name = $input['mother_name'];
         $horse->mothers_father_name = $input['mothers_father_name'];
         $horse->owner = $input['owner'];
+        $horse->belong = $input['belong'];
         $horse->trainer = $input['trainer'];
         $horse->producer = $input['producer'];
         $horse->birthday = $input['birthday'];
         $horse->winning = $input['winning'];
+        $horse->total_result = $input['total_result'];
+        $horse->netkeiba_url = $input['netkeiba_url'];
         
         $horse->save();
         
@@ -110,15 +114,19 @@ class PostHorseController extends Controller
         
         $edit = $request['horse_information'];
         $horse->name = $edit['name'];
+        $horse->sex = $edit['sex'];
         $horse->color = $edit['color'];
         $horse->father_name = $edit['father_name'];
         $horse->mother_name = $edit['mother_name'];
         $horse->mothers_father_name = $edit['mothers_father_name'];
         $horse->owner = $edit['owner'];
+        $horse->belong = $edit['belong'];
         $horse->trainer = $edit['trainer'];
         $horse->producer = $edit['producer'];
         $horse->birthday = $edit['birthday'];
         $horse->winning = $edit['winning'];
+        $horse->total_result = $edit['total_result'];
+        $horse->netkeiba_url = $edit['netkeiba_url'];
         
         $horse->save();
         

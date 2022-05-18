@@ -12,7 +12,16 @@
                     @error('horse_information.name')  <!--エラーメッセージの有無を確認-->
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
                     @enderror
-
+                </div>
+                
+                <div class="sex_form">
+                    <h4>性別</h4>
+                    <label><input type="radio" name="horse_information[sex]" value="牡" {{ old('horse_information.sex') == '牡' ? 'checked' : '' }}/>牡</label>
+                    <label><input type="radio" name="horse_information[sex]" value="牝" {{ old('horse_information.sex') == '牝' ? 'checked' : '' }}/>牝</label>
+                    <label><input type="radio" name="horse_information[sex]" value="セン" {{ old('horse_information.sex') == 'セン' ? 'checked' : '' }}/>セン</label>
+                    @error('horse_information.sex')  <!--エラーメッセージの有無を確認-->
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
                 </div>
                 
                 <div class="color_form">
@@ -75,6 +84,17 @@
                     @enderror
                 </div>
                     
+                <div class="belong_form">
+                    <h4>所属</h4>
+                    <label><input type="radio" name="horse_information[belong]" value="美浦" {{ old('horse_information.belong') == '美浦' ? 'checked' : '' }}/>美浦</label>
+                    <label><input type="radio" name="horse_information[belong]" value="栗東" {{ old('horse_information.belong') == '栗東' ? 'checked' : '' }}/>栗東</label>
+                    <label><input type="radio" name="horse_information[belong]" value="地方" {{ old('horse_information.belong') == '地方' ? 'checked' : '' }}/>地方</label>
+                    <label><input type="radio" name="horse_information[belong]" value="海外" {{ old('horse_information.belong') == '海外' ? 'checked' : '' }}/>海外</label>
+                    @error('horse_information.belong')  <!--エラーメッセージの有無を確認-->
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
+                </div>
+                
                 <div class="trainer_form">
                     <h4>調教師</h4>
                     <label>
@@ -111,6 +131,26 @@
                         <input type="text" name="horse_information[winning]" value="{{ old('horse_information.winning') }}"/>
                     </label>
                     @error('horse_information.winning')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
+                </div>
+                
+                <div class="total_result_form">
+                    <h4>通算成績</h4>
+                    <label>
+                        <input type="text" name="horse_information[total_result]" value="{{ old('horse_information.total_result') }}"/>
+                    </label>
+                    @error('horse_information.total_result')
+                        <p class="horse_information_error" style="color: red;">{{$message}}</p>
+                    @enderror
+                </div>
+                
+                <div class="netkeiba_url_form">
+                    <h4>ネット競馬URL</h4>
+                    <label>
+                        <input type="text" name="horse_information[netkeiba_url]" value="{{ old('horse_information.netkeiba_url') }}"/>
+                    </label>
+                    @error('horse_information.netkeiba_url')
                         <p class="horse_information_error" style="color: red;">{{$message}}</p>
                     @enderror
                 </div>

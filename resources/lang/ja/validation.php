@@ -156,16 +156,19 @@ return [
 
     'attributes' => [
         'horse_information.name' => '「馬名」',
+        'horse_information.sex' => '「性別」',
         'horse_information.color' => '「馬体の色」',
         'horse_information.father_name' => '「父」',
         'horse_information.mother_name' => '「母」',
         'horse_information.mothers_father_name' => '「母父」',
         'horse_information.owner' => '「馬主」',
+        'horse_information.belong' => '「所属」',
         'horse_information.trainer' => '「調教師」',
         'horse_information.producer' => '「生産者」',
         'horse_information.birthday' => '「生年月日」',
         'horse_information.winning' => '「主な勝ち鞍」',
-        
+        'horse_information.total_result' => '「通算成績」',
+        'horse_information.netkeiba_url' => '「ネット競馬URL」',
         ],
 
 ];

@@ -25,15 +25,19 @@ class PostHorseRequest extends FormRequest
     {
         return [
             'horse_information.name' => 'required|max:20',
+            'horse_information.sex' => 'required|max:10',
             'horse_information.color' => 'required|max:10',
             'horse_information.father_name' => 'required|max:20',
             'horse_information.mother_name' => 'required|max:20',
             'horse_information.mothers_father_name' => 'required|max:20',
             'horse_information.owner' => 'required|max:20',
+            'horse_information.belong' => 'required|max:10',
             'horse_information.trainer' => 'required|max:20',
             'horse_information.producer' => 'required|max:20',
             'horse_information.birthday' => 'required|max:20',
             'horse_information.winning' => 'required',
+            'horse_information.total_result' => 'required',
+            'horse_information.netkeiba_url' => 'required',
         ];
     }
 }
