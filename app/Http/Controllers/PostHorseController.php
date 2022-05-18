@@ -49,6 +49,8 @@ class PostHorseController extends Controller
         }
         
         $horses = $query->orderBy('name','desc')->get();
+        // $pictures = Picture::where('horse_id', $query->orderBy('name','desc')->get('id'))->get();
+        // dd($pictures);
         $count = $query->count();
         
         return view('search_horses', ['horses' => $horses, 'count' => $count, 'keyword' => $keyword, 'keyword_item' => $keyword_item]);
