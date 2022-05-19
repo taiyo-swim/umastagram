@@ -5,7 +5,7 @@
     <form action="/horse/{{ $horse->id }}/update/{{ $picture->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <input type="file" name="horse_image">{{ old('horse_image', $picture->image_path) }}</input>
+        <input type="file" name="horse_image" value="{{ old('horse_image') }}"/>
         @error('horse_image')
             <p class="error" style="color: red;">{{$message}}</p>
         @enderror

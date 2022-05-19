@@ -24,7 +24,7 @@ class PostPictureRequest extends FormRequest
     public function rules()
     {
         return [
-            'horse_image' => 'required|file|max:10000|mimes:jpeg,png,jpg,pdf',
+            'horse_image' =>  ($this->picture) ? 'nullable|file|max:10000|mimes:jpeg,png,jpg,pdf' : 'required|file|max:10000|mimes:jpeg,png,jpg,pdf', //編集時のバリデーション : 登録時のバリデーション
             'comment' => 'required',
         ];
     }

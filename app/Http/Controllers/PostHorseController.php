@@ -49,11 +49,11 @@ class PostHorseController extends Controller
         }
         
         $horses = $query->orderBy('name','desc')->get();
-        // $pictures = Picture::where('horse_id', $query->orderBy('name','desc')->get('id'))->get();
-        // dd($pictures);
+        $pictures = Picture::whereIn('horse_id', $query->orderBy('name','desc')->get('id'))->get(); //whereIn関数を使えば複数の値を指定できる(第1引数にカラム名で、第２引数に指定したい値を配列で指定)
+        
         $count = $query->count();
         
-        return view('search_horses', ['horses' => $horses, 'count' => $count, 'keyword' => $keyword, 'keyword_item' => $keyword_item]);
+        return view('search_horses', ['horses' => $horses, 'pictures' => $pictures, 'count' => $count, 'keyword' => $keyword, 'keyword_item' => $keyword_item]);
         
     }
     

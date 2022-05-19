@@ -14,7 +14,14 @@
             <h4>{{ $horse->sex }}&nbsp;<span id="birthday">{{ $horse->birthday }}</span>&emsp;{{ $horse->total_result }}</h4>
             <h4>父&nbsp;:&nbsp;{{ $horse->father_name }}</h4>
             <h4>母&nbsp;:&nbsp;{{ $horse->mother_name }}</h4>
+            @foreach($pictures as $picture)
+                @if($picture && $picture->horse_id === $horse->id)
+                    <img src="https://umastagram.s3.ap-northeast-1.amazonaws.com/{{ $picture->image_path }}">
+                @break {{--1枚だけ画像を表示させたらループを終了--}}
+                @endif
+            @endforeach
         @endforeach
+            
     </div>
     <a href='{{ route("umastagram.top") }}'>トップページへ</a>
     

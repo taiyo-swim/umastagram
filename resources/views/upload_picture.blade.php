@@ -4,7 +4,7 @@
     <h3>{{ $horse->name }}の写真投稿</h3>
     <form action="/horse/{{ $horse->id }}" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="horse_image" value="{{ old('horse_id') }}"/>
+        <input type="file" name="horse_image" value="{{ old('horse_image') }}"/>
         @error('horse_image')
             <p class="error" style="color: red;">{{$message}}</p>
         @enderror

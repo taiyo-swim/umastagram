@@ -47,10 +47,10 @@ class PostPictureController extends Controller
         $this->authorize('update_picture', $picture);  //ポリシーを元に投稿したユーザー以外は編集できないようにアクションを認可
         
         if ($request->file('horse_image')) {  //画像が変更されたら
-        $s3_delete = Storage::disk('s3')->delete($picture->image_path);  //変更前の画像をs3から削除
-        $horse_image = $request->file('horse_image');  //s3へ画像をアップロード
-        $image_path = Storage::disk('s3')->putFile('horse_image', $horse_image, 'public');  //putFile(PATH,$file)で指定したPATH（バケットの'/'フォルダ）にファイルを保存※第三引数に'public'を入れないと外部からのアクセスができない
-        $picture->image_path = $image_path;  //アップロードした画像のパスを取得
+            $s3_delete = Storage::disk('s3')->delete($picture->image_path);  //変更前の画像をs3から削除
+            $horse_image = $request->file('horse_image');  //s3へ画像をアップロード
+            $image_path = Storage::disk('s3')->putFile('horse_image', $horse_image, 'public');  //putFile(PATH,$file)で指定したPATH（バケットの'/'フォルダ）にファイルを保存※第三引数に'public'を入れないと外部からのアクセスができない
+            $picture->image_path = $image_path;  //アップロードした画像のパスを取得
         }
         
         $picture->comment = $request->input('comment');
