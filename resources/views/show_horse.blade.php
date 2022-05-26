@@ -1,19 +1,46 @@
 @extends('layout')
 
 @section('content')
-    
-    <div class="horse_information">
-        <h1>馬名：{{ $horse->name }}</h1><h4>{{ $horse->sex }}</h4><h4>({{ $horse->color }})</h4>
-        <h3>父：{{ $horse->father_name }}</h3>
-        <h3>母：{{ $horse->mother_name }}</h3><h5>(母父：{{ $horse->mothers_father_name }})</h5>
-        <h3>馬主：<a href='{{ route("umastagram.search", ['owner_keyword' => $horse->owner]) }}'>{{ $horse->owner }}</a></h3>
-        <h3>調教師：({{ $horse->belong }}) <a href='{{ route("umastagram.search", ['trainer_keyword' => $horse->trainer]) }}'>{{ $horse->trainer }}</a></h3>
-        <h3>生産者：<a href='{{ route("umastagram.search", ['producer_keyword' => $horse->producer]) }}'>{{ $horse->producer }}</a></h3>
-        <h3>生年月日：{{ $horse->birthday }}</h3>
-        <h3>主な勝ち鞍：{{ $horse->winning }}</h3>
-        <h3>通算成績：{{ $horse->total_result }}</h3>
-        <h3><a href='{{ $horse->netkeiba_url }}'>競争成績の詳細</h3>
+    <div class="horse_name">
+        <h1>{{ $horse->name }}</h1>
+        <p>{{ $horse->sex }}&emsp;{{ $horse->color }}</p>
     </div>
+    
+    <table id="horse_information">
+        <tr>
+            <th id=father_name>父</th>
+            <td>{{ $horse->father_name }}</td>
+        </tr>
+        <tr>
+            <th id=mother_name>母</th>
+            <td>{{ $horse->mother_name }}<br><span style="font-size: 80%;">母父：{{ $horse->mothers_father_name }}</span></td>
+        </tr>
+        <tr>
+            <th>馬主</th>
+            <td><a href='{{ route("umastagram.search", ['owner_keyword' => $horse->owner]) }}'>{{ $horse->owner }}</a></td>
+        </tr>
+        <tr>
+            <th>調教師</th>
+            <td>({{ $horse->belong }}) <a href='{{ route("umastagram.search", ['trainer_keyword' => $horse->trainer]) }}'>{{ $horse->trainer }}</a></td>
+        </tr>
+        <tr>
+            <th>生産者</th>
+            <td><a href='{{ route("umastagram.search", ['producer_keyword' => $horse->producer]) }}'>{{ $horse->producer }}</a></td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td>{{ $horse->birthday }}</td>
+        </tr>
+        <tr>
+            <th>主な勝ち鞍</th>
+            <td>{{ $horse->winning }}</td>
+        </tr>
+        <tr>
+            <th>通算成績</th>
+            <td>{{ $horse->total_result }}</td>
+        </tr>
+    </table>
+        <h3><a href='{{ $horse->netkeiba_url }}'>競争成績の詳細</h3>
     
     @can('admin') <!--管理者のみ表示-->
         <a href='{{ route("umastagram.edit", ['horse' => $horse->id]) }}'>編集</a>
@@ -24,7 +51,7 @@
         </form>
     @endcan
     
-    <div class="horse_pictures">
+    <div id="horse_pictures">
         @foreach($horse_pictures as $horse_picture)
             @if($horse_picture->image_path)
                 <a href='{{ route("umastagram.show_picture", ['horse' => $horse->id, 'picture' => $horse_picture->id]) }}'>

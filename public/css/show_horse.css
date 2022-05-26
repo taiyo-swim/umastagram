@@ -1,0 +1,46 @@
+#horse_information {
+    width: 80%;
+    border-collapse: separate;
+    border-spacing: 3px;
+}
+
+#horse_information tr {
+    height: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#horse_information th {
+    width: 20%;
+    text-align: center;
+    background: #a9a9a9;
+    color: #fff;
+}
+
+#horse_information #father_name {
+    background: #10a0e0;
+}
+
+#horse_information #mother_name {
+    background: #ff5192;
+}
+
+#horse_information td {
+    padding-left: 20px;
+    text-align: left;
+    font-size: 110%;
+    background: #d3e2f0;
+}
+
+#horse_pictures {
+    margin-top: 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#horse_pictures img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    margin: 10px;
+}

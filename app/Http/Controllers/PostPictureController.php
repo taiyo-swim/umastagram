@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Horse;
 use App\User;
 use App\Picture;
+use App\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostPictureRequest;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +35,41 @@ class PostPictureController extends Controller
     
     public function show_picture(Horse $horse, Picture $picture)
     {
-        return view('show_picture', ['picture' => $picture, 'horse' => $horse]);
+        $picture = $picture->loadCount('likes');  //リレーション数（いいねの数）を取得(viewで$picture->likes_countという形で表示できる）
+        $like_model = new Like;
+        
+        return view('show_picture', ['picture' => $picture, 'horse' => $horse, 'like_model' => $like_model]);
+    }
+    
+    public function like_picture(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $picture_id = $request->picture_id;
+        $like = new Like;
+        $picture = Picture::findOrFail($picture_id);
+
+        // 空でない（既にいいねしている）なら
+        if ($like->like_exist($user_id, $picture_id)) {
+            //likesテーブルのレコードを削除
+            $like = Like::where('picture_id', $picture_id)->where('user_id', $user_id)->delete();
+        } else {
+            //空（まだ「いいね」していない）ならlikesテーブルに新しいレコードを作成する
+            $like = new Like;
+            $like->picture_id = $request->picture_id;
+            $like->user_id = Auth::user()->id;
+            $like->save();
+        }
+
+        //loadCountとすればリレーションの数を○○_countという形で取得できる（今回の場合はいいねの総数）
+        $pictureLikesCount = $picture->loadCount('likes')->likes_count;
+
+        //一つの変数にajaxに渡す値をまとめる
+        //今回ぐらい少ない時は不要
+        $json = [
+            'pictureLikesCount' => $pictureLikesCount,
+        ];
+        //下記の記述でajaxに引数の値を返す
+        return response()->json($json);
     }
     
     public function edit_picture(Horse $horse, Picture $picture)

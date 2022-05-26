@@ -40,6 +40,10 @@ class User extends Authenticatable
     
     //リレーションを追加
     public function pictures() {
-        return $this->hasMany("App\Picture");
+        return $this->hasMany("App\Picture"); //1対多
+    }
+    
+    public function likes() {
+        return $this->hasMany("App\Like"); //1対多
     }
 }

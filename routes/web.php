@@ -31,9 +31,10 @@ Route::get('/horse/{horse}', 'PostHorseController@show')->name('umastagram.show'
 Route::get('horse/{horse}/create_picture', 'PostPictureController@create_picture')->name('umastagram.create_picture')->middleware('auth'); //馬の写真投稿画面表示(ログインユーザー）
 Route::post('horse/{horse}', 'PostPictureController@upload_picture')->name('umastagram.upload_picture')->middleware('auth'); //馬の写真投稿(ログインユーザー）
 Route::get('horse/{horse}/edit/{picture}', 'PostPictureController@edit_picture')->name('umastagram.edit_picture')->middleware('auth'); //馬の写真編集画面表示(ログインユーザー）
-Route::get('horse/{horse}/{picture}', 'PostPictureController@show_picture')->name('umastagram.show_picture'); //馬の写真の詳細ページ表示
+Route::get('horse/{horse}/{picture}', 'PostPictureController@show_picture')->name('umastagram.show_picture')->middleware('auth'); //馬の写真の詳細ページ表示
 Route::put('horse/{horse}/update/{picture}', 'PostPictureController@update_picture')->name('umastagram.update_picture')->middleware('auth'); //馬の写真の更新(ログインユーザー）
 Route::delete('/horse/{horse}/{picture}', 'PostPictureController@delete_picture')->name('umastagram.delete_picture')->middleware('auth'); //馬の写真削除(ログインユーザー）
+Route::post('like_picture', 'PostPictureController@like_picture')->name('umastagram.like_picture')->middleware('auth'); //写真にいいね
 
 
 Auth::routes();

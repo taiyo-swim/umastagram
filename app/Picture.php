@@ -19,4 +19,8 @@ class Picture extends Model
     public function horse() {
         return $this->belongsTo("App\Horse");
     }
+    
+    public function likes() {
+        return $this->hasMany("App\Like");
+    }
 }

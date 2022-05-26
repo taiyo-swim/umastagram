@@ -18,11 +18,13 @@
     
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/show_horse.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/show_picture.css') }}" rel="stylesheet">
         
     </head>
     
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: rgb(59,79,102);">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: rgb(59,79,102); margin-bottom: 30px;">
             <div class="container">
                 <a class="navbar-brand" href="{{route('umastagram.top')}}"><img src="/img/Umastagram.png" alt="logo" class="d-inline-block align-top"  width="100" height="60"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
